@@ -4,24 +4,149 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Savinnah | Portfolio</title>
+  <!-- Favicon & Mobile Theme Color -->
+  <meta name="theme-color" content="#fe0077">
+<!-- SEO Meta -->
+<meta name="description" content="Savinnah is a rising Kenyan indie-pop artist whose unique blend of soulful vocals and modern rhythms is redefining the sound of East African music. Discover her music, upcoming tours, achievements, and connect directly.">
+  <meta name="keywords" content="Savinnah, Kenyan pop artist, indie pop, EDM pop, Kenyan singer, Nairobi musician, music portfolio">
+  <meta name="author" content="Savinnah">
+
+  <!-- Crawlers -->
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.savinnah.com/">
+
+  <!-- Open Graph – Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.savinnah.com/">
+  <meta property="og:title" content="Savinnah — Kenyan Indie-Pop Artist">
+  <meta property="og:description" content="Join Savinnah's musical journey: from electrifying indie-pop releases to global stages. Discover her work, news, and upcoming tours.">
+  <meta property="og:image" content="https://www.savinnah.com/images/sav16.webp">
+  <meta property="og:image:alt" content="Savinnah performing on stage, vibrant neon lighting">
+
+  <!-- Twitter Card for Sharing -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.savinnah.com/">
+  <meta name="twitter:title" content="Savinnah — Kenyan Indie-Pop Artist">
+  <meta name="twitter:description" content="Explore Savinnah's unique fusion of indie-pop and EDM—her music, tour updates, and more.">
+  <meta name="twitter:image" content="https://www.savinnah.com/images/sav16.webp">
+
+<!-- Preload Montserrat -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<!-- Preload Allura -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Allura&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<!-- Fallback for older browsers -->
+<noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+</noscript>
+  
+
   <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
     <!-- Google Fonts: Montserrat -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <link rel="stylesheet" href="styles.css">
+<!--Favicon stuff-->
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Savinnah" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Preload Images -->
+<link rel="preload" as="image" href="images/sav6.23bp">
+<link rel="preload" as="image" href="images/sav15.webp">
+<link rel="preload" as="image" href="images/sav7.webp">
+<link rel="preload" as="image" href="images/sav2.webp">
+<link rel="preload" as="image" href="images/sav5.webp">
+
+<!-- Preload Video -->
+<link rel="preload" as="video" href="vid/oppo.mp4" type="video/mp4" crossorigin="anonymous">
+
+
+
+<!-- Organization structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Savinnah",
+  "url": "https://www.savinnah.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://www.savinnah.com/s.png"
+  },
+  "description": "Savinnah is a rising Kenyan indie-pop artist whose unique blend of soulful vocals and modern rhythms is redefining the sound of East African music.",
+  "sameAs": [
+    "www.youtube.com/@savinnah",
+    "https://www.instagram.com/savinnahutm_source=ig_web_button_share_sheet&igsh=NzRlbjZqdG9zZG5x",
+    " https://open.spotify.com/artist/3cd1tAs8P9mpjE4e4kBbQb?si=cjjSG-FvR_eKhLmeJpIzvA"
+  ]
+}
+</script>
+
+<!-- Website structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Savinnah Music",
+  "url": "https://www.savinnah.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.savinnah.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- Breadcrumb structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.savinnah.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Music",
+      "item": "https://www.savinnah.com/music.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "About",
+      "item": "https://www.savinnah.com/about.html"
+    }
+  ]
+}
+</script>
+
+
+  <link rel="stylesheet" href="styles.min.css">
 </head>
 <body>
   <!-- Loading Screen -->
   <div id="preloader">
     <div class="slideshow">
-      <img src="images/sav6.webp" alt="Slide 1">
-      <img src="images/sav15.webp" alt="Slide 2">
-      <img src="images/sav7.webp" alt="Slide 3">
-      <img src="images/sav2.webp" alt="Slide 4">
-      <img src="images/sav5.webp" alt="Slide 5">
-      <img src="images/sav3.webp" alt="Slide 6">
-      <img src="images/sav11.webp" alt="Slide 7">
+      <img src="images/sav6.webp" alt="Slide 1" loading="eager" fetchpriority="high">
+      <img src="images/sav15.webp" alt="Slide 2" loading="eager" fetchpriority="high">
+      <img src="images/sav7.webp" alt="Slide 3" loading="eager" fetchpriority="high">
+      <img src="images/sav2.webp" alt="Slide 4" loading="eager" fetchpriority="high">
+      <img src="images/sav5.webp" alt="Slide 5" loading="eager" fetchpriority="high">
+      <img src="images/sav3.webp" alt="Slide 6" loading="eager" fetchpriority="high">
+      <img src="images/sav11.webp" alt="Slide 7" loading="eager" fetchpriority="high">
       <img src="images/462A2452.webp" alt="Slide 8">
       <img src="images/sav13.webp" alt="Slide 9">
       <img src="images/sav3.webp" alt="Slide 10">
@@ -33,16 +158,18 @@
   </div>
 
 <div class="rattle-wrapper r-left">
-  <span class="rattle">S</span>
+  <span class="rattle">&#9733;</span>
 </div>
 
 <div class="rattle-wrapper r-right">
-  <span class="rattle">S</span>
+  <span class="rattle">&#9733;</span>
 </div>
 
 <div class="rattle-wrapper r-bottom">
-  <span class="rattle">S</span>
+  <span class="rattle">&#9733;</span>
 </div>
+
+
 
 
 <!-- Navbar -->
@@ -80,45 +207,50 @@
 <!-- Main Content -->
 <main id="main-content">
   <section class="media-gallery">
-    <!-- First video -->
-    <div class="media-item">
-      <video autoplay muted loop playsinline>
-        <source src="videos/blinktwice.mp4" type="video/mp4">
-        Your browser does not support video.
-      </video>
-    </div>
-
     <!-- 10 images -->
-    <div class="media-item"><img src="images/462A2452.webp" alt="Gallery Image 1"></div>
-    <div class="media-item"><img src="images/sav13.webp" alt="Gallery Image 2"></div>
-    <div class="media-item"><img src="images/sav4.webp" alt="Gallery Image 3"></div>
+    <div class="media-item"><img src="images/sav11.webp" alt="Gallery Image 1"></div>
+    <div class="media-item"><img src="images/sav2.webp" alt="Gallery Image 2"></div>
+    <div class="media-item"><img src="images/sav10.webp" alt="Gallery Image 3"></div>
+    <div class="media-item"><img src="images/sav24.webp" alt="Gallery Image 9"></div>
     <div class="media-item"><img src="images/av17.webp" alt="Gallery Image 4"></div>
-    <div class="media-item"><img src="images/sav11.webp" alt="Gallery Image 5"></div>
+    <div class="media-item"><img src="images/sav20.webp" alt="Gallery Image 5"></div>
 
         <!-- Extra video -->
     <div class="media-item">
-      <video autoplay muted loop playsinline>
-        <source src="videos/PARDON ME - Apple 3-4.mp4" type="video/mp4">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="vid/blinktwice.mp4" type="video/mp4">
         Your browser does not support video.
       </video>
     </div>
 
-     <div class="media-item"><img src="images/sav15.webp" alt="Gallery Image 9"></div>
-    <div class="media-item"><img src="images/sav16.webp" alt="Gallery Image 6"></div>
-    <div class="media-item"><img src="images/sav18.webp" alt="Gallery Image 10"></div>
-    <div class="media-item"><img src="images/sav19.webp" alt="Gallery Image 9"></div>
-
-    <div class="media-item"><img src="images/sav5.webp" alt="Gallery Image 7"></div>
-    <div class="media-item"><img src="images/sav6.webp" alt="Gallery Image 8"></div>
+     <div class="media-item"><img src="images/sav8.webp" alt="Gallery Image 9"></div>
+    <div class="media-item"><img src="images/sav6.webp" alt="Gallery Image 6"></div>
+    <div class="media-item"><img src="images/sav16.webp" alt="Gallery Image 10"></div>
     <div class="media-item"><img src="images/sav7.webp" alt="Gallery Image 9"></div>
-    <div class="media-item"><img src="images/sav2.webp" alt="Gallery Image 6"></div>
-    <div class="media-item"><img src="images/sav8.webp" alt="Gallery Image 10"></div>
+    <div class="media-item"><img src="images/sav19.webp" alt="Gallery Image 8"></div>
+
+        <!-- First video -->
+    <div class="media-item">
+      <video autoplay muted loop  preload="metadata">
+        <source src="vid/oppo.mp4" type="video/mp4" >
+        Your browser does not support video.
+      </video>
+    </div>
+
+
+    <div class="media-item"><img src="images/sav26.webp" alt="Gallery Image 9"></div>
+    <div class="media-item"><img src="images/sav27.webp" alt="Gallery Image 6"></div>
+    <div class="media-item"><img src="images/sav13.webp" alt="Gallery Image 10"></div>
     
-    <div class="media-item"><img src="images/sav1.webp" alt="Gallery Image 7"></div>
-    <div class="media-item"><img src="images/sav10.webp" alt="Gallery Image 8"></div>
-    <div class="media-item"><img src="images/sav12.webp" alt="Gallery Image 9"></div>
-    <div class="media-item"><img src="images/sav13.webp" alt="Gallery Image 6"></div>
-    <div class="media-item"><img src="images/sav3.webp" alt="Gallery Image 10"></div>
+    <div class="media-item"><img src="images/sav15.webp" alt="Gallery Image 7"></div>
+    <div class="media-item"><img src="images/sav3.webp" alt="Gallery Image 8"></div>
+    <div class="media-item"><img src="images/sav4.webp" alt="Gallery Image 9"></div>
+    <div class="media-item"><img src="images/sav5.webp" alt="Gallery Image 6"></div>
+    <div class="media-item"><img src="images/462A2452.webp" alt="Gallery Image 10"></div>
+
+        <div class="media-item"><img src="images/sav12.webp" alt="Gallery Image 8"></div>
+    <div class="media-item"><img src="images/sav21.webp" alt="Gallery Image 6"></div>
+        <div class="media-item"><img src="images/sav18.webp" alt="Gallery Image 6"></div>
 
 
 
@@ -175,9 +307,54 @@
 </div>
 
 
+<!-- Transition overlay -->
+<div id="page-transition">
+  <div class="word-wrapper"></div>
+</div>
+
+
+
   <script src="scripts.js"></script>
 
-  <script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@0.2.35/bundled/lenis.min.js"></script>
+<script>
+  // Initialize Lenis for ultra-smooth scrolling
+  const lenis = new Lenis({
+    duration: 1.5,            // slightly longer for smoother feeling
+    easing: (t) => t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3)/2, // smooth cubic easing in/out
+    direction: 'vertical',    
+    smooth: true,             
+    smoothTouch: 0.1,         // smoother touch/momentum scrolling on mobile
+    wheelMultiplier: 1.2,     // increase scroll sensitivity slightly
+    smartphone: {
+      smooth: true,
+      smoothTouch: 0.1
+    },
+    tablet: {
+      smooth: true,
+      smoothTouch: 0.1
+    },
+  });
+
+  // RAF loop to run Lenis
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+
+  // Optional: handle anchor links smoothly
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) lenis.scrollTo(target);
+    });
+  });
+</script>
+
+
+  <script defer>
     // Desktop horizontal scroll
 const gallery = document.querySelector('.media-gallery');
 
@@ -191,6 +368,129 @@ if (window.innerWidth > 768) {
 }
 
   </script>
+
+  <script defer>
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll("a");
+  const transition = document.getElementById("page-transition");
+  const wrapper = transition.querySelector(".word-wrapper");
+  const word = "SAVINNAH";
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+  // Scramble function for letters
+  function scrambleWord(targetWord, duration = 3000) {
+    wrapper.innerHTML = "";
+    // Create spans for each letter
+    for (let i = 0; i < targetWord.length; i++) {
+      const span = document.createElement("span");
+      span.textContent = "";
+      wrapper.appendChild(span);
+    }
+
+    const spans = wrapper.querySelectorAll("span");
+    const intervalTime = 50;
+    let elapsed = 0;
+
+    const interval = setInterval(() => {
+      spans.forEach((span, index) => {
+        if (elapsed < duration) {
+          span.textContent = letters[Math.floor(Math.random() * letters.length)];
+        }
+      });
+      elapsed += intervalTime;
+    }, intervalTime);
+
+    // Reveal final letters
+    setTimeout(() => {
+      clearInterval(interval);
+      spans.forEach((span, index) => {
+        span.textContent = targetWord[index];
+      });
+    }, duration);
+  }
+
+  // Activate overlay and scramble letters
+  transition.classList.add("active");
+  scrambleWord(word, 3000);
+
+  // Page navigation handling
+  window.addEventListener("pageshow", (event) => {
+    const comingFromHistory = event.persisted || window.performance.getEntriesByType("navigation")[0]?.type === "back_forward";
+    if (comingFromHistory) {
+      transition.classList.remove("active");
+      sessionStorage.removeItem("transitioning");
+    } else {
+      if (sessionStorage.getItem("transitioning") === "true") {
+        sessionStorage.setItem("transitioning", "false");
+        transition.classList.remove("active");
+      } else {
+        transition.classList.remove("active");
+      }
+    }
+  });
+
+  links.forEach(link => {
+    const href = link.getAttribute("href");
+    if (href && !href.startsWith("#") && !href.startsWith("http")) {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        sessionStorage.setItem("transitioning", "true");
+        transition.classList.add("active");
+        scrambleWord(word, 2000); // Shuffle again on navigation
+        setTimeout(() => {
+          window.location.href = href;
+        }, 4000);
+      });
+    }
+  });
+});
+</script>
+
+<script>
+  const images = [
+  "images/sav6.webp",
+  "images/sav15.webp",
+  "images/sav7.webp",
+  "images/sav2.webp",
+  "images/sav5.webp",
+  "images/sav3.webp",
+  "images/sav11.webp",
+  "images/462A2452.webp",
+  "images/sav13.webp",
+  "images/sav3.webp"
+];
+
+images.forEach(src => {
+  const img = new Image();
+  img.src = src; // Forces immediate download
+});
+
+</script>
+
+<script>
+const criticalImages = [
+  "images/sav11.webp",
+  "images/sav2.webp",
+  "images/sav10.webp"
+];
+const criticalVideos = [
+  "vid/oppo.mp4",
+  "vid/blinktwice.mp4"
+];
+
+// Preload images
+criticalImages.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
+
+// Preload video metadata only
+criticalVideos.forEach(src => {
+  const vid = document.createElement('video');
+  vid.src = src;
+  vid.preload = 'metadata';
+});
+</script>
 
 
 </body>

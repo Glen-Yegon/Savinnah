@@ -487,7 +487,7 @@ html:not(.no-custom-cursor) body {
 }
 
 
-/* Hero Section */
+/* Hero Section - Desktop */
 .hero {
   position: relative;
   height: 100vh;
@@ -499,20 +499,18 @@ html:not(.no-custom-cursor) body {
   text-align: center;
   color: white;
   overflow: hidden;
-
-  /* Add the zoom animation */
-  animation: zoomEffect 2s ease-out forwards;
 }
 
-/* Keyframes for zoom effect */
-@keyframes zoomEffect {
-  0% {
-    background-size: 120%; /* Zoomed in */
-  }
-  100% {
-    background-size: 100%; /* Normal size */
+/* Hero Section - Mobile */
+@media (max-width: 768px) {
+  .hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('images/sav10.webp') center/cover no-repeat;
+    background-size: cover; /* ensures it fills entire viewport */
+    height: 100vh; /* maintain full viewport height */
   }
 }
+
 
 /* Dark overlay for depth */
 .hero-overlay {
@@ -867,14 +865,44 @@ background:
   }
   .spine{ display:none; }
 
-  .timeline{
-    overflow-x: auto;
-    white-space: nowrap;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 12px;
-    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
-  }
+.timeline {
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+
+  /* Smooth scrolling for modern browsers */
+  scroll-behavior: smooth;
+
+  /* iOS momentum scrolling (optional, only works on iOS Safari <13) */
+  -webkit-overflow-scrolling: touch;
+
+  /* Fade masks at edges */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+
+  /* Ensure mask works with WebKit browsers */
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+
+  /* Optional: hide scrollbar for cleaner look */
+  scrollbar-width: thin;           /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+
+.timeline::-webkit-scrollbar {
+  height: 8px;                     /* Chrome, Safari, Opera */
+}
+.timeline::-webkit-scrollbar-track {
+  background: transparent;
+}
+.timeline::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 4px;
+}
+
 
   .card{
     display: inline-flex;
@@ -900,7 +928,8 @@ background:
   }
 
   .card-title { 
-    font-size: 1rem; 
+    font-size: 1.3rem; 
+    font-weight: 100;
   }
   
   .card-text { 
@@ -1257,5 +1286,103 @@ background:
   }
   .footer-signup input[type="email"] {
     min-width: 150px;
+  }
+}
+
+
+
+/* Page transition overlay with blurred background image */
+#page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/sav13.webp') center/cover no-repeat; /* Replace with your image */
+  -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px); /* blur the background image */
+  background-color: rgba(0,0,0,0.95); /* subtle dark translucent overlay for contrast */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999999;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  overflow: hidden;
+}
+
+/* Optional subtle branding tint overlay */
+#page-transition::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); /* subtle pink tint */
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+
+/* Active overlay */
+#page-transition.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Fade up to hide */
+#page-transition.fade-up {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Word wrapper vertical layout */
+.word-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 6vw;
+  font-weight: 700;
+  color: #000000;
+  letter-spacing: 4px;
+}
+
+/* Shuffle animation for letters (without tilt) */
+.word-wrapper span {
+  opacity: 0;
+  display: block;
+  transform: translateY(-50px);
+  animation: shuffleIn 3s forwards;
+}
+
+@keyframes shuffleIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .word-wrapper {
+    font-size: 12vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .word-wrapper {
+    font-size: 16vw;
   }
 }

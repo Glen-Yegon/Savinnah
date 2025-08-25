@@ -6,7 +6,7 @@ window.addEventListener("load", () => {
   const rightS = document.querySelector(".r-right");
   const bottomS = document.querySelector(".r-bottom");
   let current = 0;
-  const delay = 200; // speed of flashes
+  const delay = 200;
 
   function showSlide(index) {
     slides[index].classList.add("active");
@@ -19,23 +19,19 @@ window.addEventListener("load", () => {
         current++;
       } else {
         clearInterval(interval);
-        
-setTimeout(() => {
-  brand.style.opacity = "0";
 
-  // Add class to all S’s simultaneously
-  requestAnimationFrame(() => {
-    [leftS, rightS, bottomS].forEach(el => el.classList.add("to-center"));
-  });
-
-  // After they merge, hide them after 1s
-  setTimeout(() => {
-    [leftS, rightS, bottomS].forEach(el => el.style.opacity = "0");
-  }, 2200); // 1.2s move + 1s wait
-}, 1000);
-
-        // Show navbar
+        // Show navbar immediately
         navbar.style.display = "block";
+
+        // Fade out brand first
+        brand.style.opacity = "0";
+
+        // Delay movement of letters by 1 second
+        setTimeout(() => {
+          leftS.classList.add("move-left");
+          rightS.classList.add("move-right");
+          bottomS.classList.add("move-bottom");
+        }, 1000);
 
         // Transition background
         const preloader = document.getElementById("preloader");
@@ -62,6 +58,7 @@ setTimeout(() => {
     navLinks.classList.toggle("active");
   });
 });
+
 
 
 

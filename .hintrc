@@ -7,7 +7,10 @@
       "default",
       {
         "ignore": [
-          "video[playsinline]"
+          "video[playsinline]",
+          "meta[name=theme-color]",
+          "img[fetchpriority]",
+          "iframe[loading]"
         ]
       }
     ],
@@ -25,9 +28,11 @@
           "scrollbar-width",
           "scrollbar-width: thin",
           "scrollbar-color",
-          "mask-image"
+          "mask-image",
+          "-webkit-overflow-scrolling"
         ]
       }
-    ]
+    ],
+    "no-inline-styles": "off"
   }
 }
