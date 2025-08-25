@@ -1,0 +1,36 @@
+/* 🔹 Custom Popup Styling */
+.custom-popup {
+  position: fixed;
+  bottom: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 280px;
+  max-width: 90%;
+  padding: 16px 22px;
+  border-radius: 12px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0;
+  z-index: 9999;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* Success style */
+.custom-popup.success {
+    background: linear-gradient(to right, #ff006e, black, #ff006e);
+}
+
+/* Error style */
+.custom-popup.error {
+    background: linear-gradient(to right, #ff006e, black, #ff006e);
+}
+
+/* Slide in animation */
+.custom-popup.show {
+  bottom: 30px;
+  opacity: 1;
+}

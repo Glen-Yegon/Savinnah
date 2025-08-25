@@ -143,12 +143,9 @@ body,
 
 body {
 font-family: 'Montserrat', sans-serif;
-  background: #0a0a0a;
-  color: #fff;
+  background: #000000;
   overflow-x: hidden;
 }
-
-
 
 /* Navbar */
 #navbar {
@@ -394,6 +391,9 @@ font-family: 'Montserrat', sans-serif;
 }
 /* Responsive */
 @media (max-width: 768px) {
+  #navbar{
+    padding: 0;
+  }
   .nav-links {
     display: none;
   }

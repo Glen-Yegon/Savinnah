@@ -16,7 +16,7 @@
 
     /* Background image setup */
     body {
-      background: url('images/sav11.jpg') no-repeat center center fixed;
+      background: url('images/sav11.webp') no-repeat center center fixed;
       background-size: cover;
       overflow-x: hidden;
     }
@@ -492,7 +492,7 @@ html:not(.no-custom-cursor) body {
   position: relative;
   height: 100vh;
   background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-              url('images/sav10.jpg') center/cover no-repeat;
+              url('images/sav10.webp') center/cover no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1051,8 +1051,7 @@ background:
   position: relative;
   text-align: center;
   padding: 100px 20px;
-  background: linear-gradient(135deg, rgba(0,0,0,0.59), rgba(20,0,20,0.75)),
-              url('images/sav2.6jpg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(0,0,0,0.59), rgba(20,0,20,0.75));
   color: #fff;
   overflow: hidden;
 }

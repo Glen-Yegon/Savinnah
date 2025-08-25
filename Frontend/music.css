@@ -395,6 +395,9 @@ font-family: 'Montserrat', sans-serif;
 }
 /* Responsive */
 @media (max-width: 768px) {
+    #navbar{
+    padding: 0;
+  }
   .nav-links {
     display: none;
   }
@@ -682,7 +685,7 @@ font-family: 'Montserrat', sans-serif;
 /* CTA Section with Background Image and Animations */
 .cta-section {
   position: relative;
-  background-image: url('images/sav3.jpg'); /* Replace with your image */
+  background-image: url('images/sav3.webp'); /* Replace with your image */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
