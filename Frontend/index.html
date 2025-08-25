@@ -369,7 +369,7 @@ if (window.innerWidth > 768) {
 
   </script>
 
-  <script defer>
+<script defer>
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll("a");
   const transition = document.getElementById("page-transition");
@@ -380,7 +380,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Scramble function for letters
   function scrambleWord(targetWord, duration = 3000) {
     wrapper.innerHTML = "";
-    // Create spans for each letter
     for (let i = 0; i < targetWord.length; i++) {
       const span = document.createElement("span");
       span.textContent = "";
@@ -392,7 +391,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let elapsed = 0;
 
     const interval = setInterval(() => {
-      spans.forEach((span, index) => {
+      spans.forEach((span) => {
         if (elapsed < duration) {
           span.textContent = letters[Math.floor(Math.random() * letters.length)];
         }
@@ -400,7 +399,6 @@ document.addEventListener("DOMContentLoaded", () => {
       elapsed += intervalTime;
     }, intervalTime);
 
-    // Reveal final letters
     setTimeout(() => {
       clearInterval(interval);
       spans.forEach((span, index) => {
@@ -409,42 +407,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }, duration);
   }
 
-  // Activate overlay and scramble letters
-  transition.classList.add("active");
-  scrambleWord(word, 3000);
-
-  // Page navigation handling
+  // Page navigation handling for back/forward or reload
   window.addEventListener("pageshow", (event) => {
-    const comingFromHistory = event.persisted || window.performance.getEntriesByType("navigation")[0]?.type === "back_forward";
+    const comingFromHistory =
+      event.persisted ||
+      window.performance.getEntriesByType("navigation")[0]?.type === "back_forward";
+
     if (comingFromHistory) {
       transition.classList.remove("active");
       sessionStorage.removeItem("transitioning");
-    } else {
-      if (sessionStorage.getItem("transitioning") === "true") {
-        sessionStorage.setItem("transitioning", "false");
-        transition.classList.remove("active");
-      } else {
-        transition.classList.remove("active");
-      }
     }
   });
 
-  links.forEach(link => {
+  // Trigger overlay only when leaving the page via a link
+  links.forEach((link) => {
     const href = link.getAttribute("href");
     if (href && !href.startsWith("#") && !href.startsWith("http")) {
-      link.addEventListener("click", e => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
         sessionStorage.setItem("transitioning", "true");
         transition.classList.add("active");
-        scrambleWord(word, 2000); // Shuffle again on navigation
+        scrambleWord(word, 2000); // Shuffle letters
         setTimeout(() => {
           window.location.href = href;
-        }, 4000);
+        }, 4000); // Wait for animation before navigating
       });
     }
   });
 });
 </script>
+
 
 <script>
   const images = [
