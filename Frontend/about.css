@@ -1,0 +1,1262 @@
+  /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: "Poppins", Arial, sans-serif;
+      color: #fff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    /* Background image setup */
+    body {
+      background: url('images/sav11.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+    }
+
+    /* Overlay (for readability) */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.05); /* dark overlay */
+      z-index: -1;
+    }
+
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px; /* Adjust thickness */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* No background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fe0077; /* Scrollbar color */
+  border-radius: 10px; /* Rounded edges */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #fe0077; /* Darker pink on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #fe0077 transparent;
+}
+
+
+
+
+/* Variables for easy customization */
+:root {
+  --s-cursor-size: 50px;
+  --s-cursor-color: #fe0077; /* hot pink */
+  --s-cursor-glow: #fe0077;
+  --s-cursor-secondary: rgba(255,105,180,0.5);
+  --s-cursor-scale-hover: 1.5;
+  --s-cursor-scale-down: 0.9;
+  --s-cursor-shape: 50%; /* circular */
+}
+
+/* Container that follows the mouse */
+#s-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--s-cursor-size);
+  height: var(--s-cursor-size);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform, opacity;
+  opacity: 0; /* start hidden for fade-in */
+  transition: opacity 0.6s ease;
+  border-radius: var(--s-cursor-shape);
+  background: rgba(255, 105, 180, 0.2);
+  box-shadow: 0 0 10px var(--s-cursor-glow), 0 0 20px var(--s-cursor-glow), 0 0 30px var(--s-cursor-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Letter inside the geometric shape */
+#s-cursor > span {
+  font-family: 'Allura', cursive, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 100;
+  font-size: calc(var(--s-cursor-size) * 0.6);
+  color: var(--s-cursor-color);
+  text-shadow: 0 0 6px var(--s-cursor-glow), 0 0 12px var(--s-cursor-secondary);
+  transition: transform 160ms ease, filter 200ms ease;
+}
+
+/* Hover state for interactive elements */
+html.cursor-hovering #s-cursor {
+  transform: scale(var(--s-cursor-scale-hover));
+  box-shadow: 0 0 20px var(--s-cursor-glow), 0 0 30px var(--s-cursor-glow), 0 0 40px var(--s-cursor-secondary);
+  background: rgba(255, 105, 180, 0.3);
+}
+html.cursor-hovering #s-cursor > span {
+  transform: scale(var(--s-cursor-scale-hover));
+  filter: drop-shadow(0 0 8px var(--s-cursor-glow));
+}
+
+/* Press state */
+html.cursor-pressed #s-cursor {
+  transform: scale(var(--s-cursor-scale-down));
+  opacity: 0.9;
+}
+html.cursor-pressed #s-cursor > span {
+  transform: scale(var(--s-cursor-scale-down));
+}
+
+/* Subtle trailing aura using pseudo-elements */
+#s-cursor::before, #s-cursor::after {
+  content: "S";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: inherit;
+  font-weight: 100;
+  font-size: calc(var(--s-cursor-size) * 0.6);
+  color: var(--s-cursor-color);
+  opacity: 0.12;
+  filter: blur(4px);
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+#s-cursor::after {
+  opacity: 0.06;
+  filter: blur(8px);
+}
+
+/* Stronger aura on hover */
+html.cursor-hovering #s-cursor::before {
+  opacity: 0.25;
+}
+html.cursor-hovering #s-cursor::after {
+  opacity: 0.12;
+}
+
+/* Accessibility & mobile: disable on touch/reduced motion */
+@media (hover: none), (pointer: coarse),
+(prefers-reduced-motion: reduce) {
+  html { cursor: auto !important; }
+  #s-cursor { display: none !important; }
+}
+
+/* ===== Custom S Cursor ===== */
+/* Hide the default cursor on desktop */
+html:not(.no-custom-cursor) body {
+  cursor: none;
+}
+
+
+#navbar {
+  position: fixed;
+  top: 0;             /* always visible at top */
+  left: 0;
+  width: 100%;
+  background: transparent;
+  border-bottom: 1px solid #fe0077;
+  padding: 10px 20px;
+  z-index: 9999;
+  box-shadow: 0 6px 25px rgba(255, 102, 196, 0.4);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.5s ease;
+  opacity: 1;         /* fully visible */
+}
+
+
+/* Optional: Add a subtle animated glow for the neon border */
+#navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff66c4, #ff0099, #ff66c4);
+  animation: neonGlow 2.5s linear infinite;
+}
+
+@keyframes neonGlow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}
+
+
+/* Slide-down active state */
+#navbar.show {
+  top: 0;
+  opacity: 1;
+}
+
+/* Container */
+.nav-container {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0px auto;
+  position: relative;
+}
+
+/* Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 55px;
+}
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 100;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-links li a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: pink;
+  transition: width 0.6s ease;
+}
+.nav-links li a:hover {
+  color: pink;
+}
+.nav-links li a:hover::after {
+  width: 100%;
+}
+
+/* Logo */
+.nav-logo img {
+  height: 70px;         /* adjust size */
+  width: auto;
+  transform: scale(2.2);
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo img:hover {
+  transform: scale(1.1); /* subtle hover zoom */
+}
+
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+}
+.hamburger span {
+  height: 3px; width: 25px;
+  background: #fe0077;
+  margin: 2px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  #navbar{
+    padding: 30px 5px;
+  }
+
+    #navbar {
+    background: transparent;
+    border-bottom: none;
+    box-shadow: none;
+  }
+  #navbar::after {
+    display: flex; /* remove glowing line */
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(0,0,0,0.95);
+    flex-direction: column;
+    width: 220px;
+    display: none;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+  }
+  .nav-links.active { display: flex; }
+  .nav-links.left, .nav-links.right {
+    display: none; /* hide desktop layout */
+  }
+  .hamburger { display: flex; }
+   /* Keep logo on the left */
+  .nav-logo {
+    margin: 10px; /* remove auto margin */
+    position: absolute;
+    left: 10px;
+    transform: scale(0.9);
+  }
+}
+
+/* Slide-down Animation */
+@keyframes slideDown {
+  from { top: -80px; opacity: 0; }
+  to { top: 0; opacity: 1; }
+}
+
+
+
+/* ========================= */
+/* FULLSCREEN MENU OVERLAY   */
+/* ========================= */
+.menu-overlay {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  transition: right 0.6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-overlay.active {
+  right: 0;
+}
+
+/* Content wrapper */
+.menu-overlay .menu-content {
+  text-align: center;
+  color: white;
+  width: 90%;
+  max-width: 800px;
+  font-family: 'Allura', cursive;
+  font-weight: bold;
+  animation: fadeInUp 0.8s ease forwards;
+  position: relative;
+}
+
+/* Logo image */
+.menu-overlay .menu-logo img {
+  max-width: 180px;
+  transform: scale(1.5);
+  margin: 0 auto 15px;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(254,0,119,0.6));
+}
+
+/* Animated underline */
+.menu-overlay .logo-underline {
+  height: 2px;
+  width: 0;
+  margin: 0 auto 40px;
+  background: #fe0077;
+}
+
+/* Keyframes */
+@keyframes underlineExpand {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Active animation trigger */
+.menu-overlay.active .logo-underline {
+  animation: underlineExpand 2s ease forwards;
+}
+
+/* Links */
+.menu-overlay .menu-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.menu-overlay .menu-links li {
+  margin: 20px 0;
+}
+.menu-overlay .menu-links li a {
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 100;
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.menu-overlay .menu-links li a:hover {
+  color: #fe0077;
+}
+.menu-overlay .menu-links li a::after {
+  content: '';
+  position: absolute;
+  left: 50%; bottom: -8px;
+  transform: translateX(-50%);
+  width: 0; height: 2px;
+  background: #fe0077;
+  transition: width 0.4s ease;
+}
+.menu-overlay .menu-links li a:hover::after {
+  width: 100%;
+}
+
+/* Socials */
+.menu-overlay .menu-socials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+.menu-overlay .menu-socials a {
+  font-size: 1.6rem;
+  color: #fe0077;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+.menu-overlay .menu-socials a:hover {
+  transform: scale(1.3);
+  text-shadow: 0 0 15px #fe0077, 0 0 25px rgba(254,0,119,0.7);
+}
+
+/* Tagline */
+.menu-overlay .menu-tagline {
+  position: absolute;
+  bottom: 40px;
+  left: 0%;
+  transform: translateX(-50%);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Allura', cursive;
+  font-size: 1.8rem;
+    left: 5%;
+  color: white;
+  font-weight: 100;
+  opacity: 0.9;
+  letter-spacing: 1px;
+  animation: fadeInUp 2s ease forwards;
+}
+.menu-overlay .menu-tagline p {
+  margin: 0;
+}
+
+/* Close Button */
+.menu-overlay .menu-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 3.2rem;
+  font-weight: 300;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10001;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
+}
+.menu-overlay .menu-close:hover {
+  color: #fe0077;
+  transform: rotate(90deg) scale(1.2);
+  text-shadow: 0 0 10px #fe0077, 0 0 20px rgba(254,0,119,0.7);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url('images/sav10.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+
+  /* Add the zoom animation */
+  animation: zoomEffect 2s ease-out forwards;
+}
+
+/* Keyframes for zoom effect */
+@keyframes zoomEffect {
+  0% {
+    background-size: 120%; /* Zoomed in */
+  }
+  100% {
+    background-size: 100%; /* Normal size */
+  }
+}
+
+/* Dark overlay for depth */
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.04);
+  z-index: 1;
+}
+
+/* Content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+/* Typing Intro */
+.intro-text {
+  font-family: 'Allura', cursive;
+  font-size: 4.5rem;
+  color: #fe0077;
+  margin-bottom: 20px;
+  font-weight: 100;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* Blinking cursor */
+.cursor {
+  display: inline-block;
+  margin-left: 5px;
+  color: #fe0077;
+  animation: blink 0.8s steps(2, start) infinite;
+}
+@keyframes blink {
+  to { visibility: hidden; }
+}
+
+/* Tagline */
+.artist-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+
+/* Music Visualizer Effect */
+.music-visualizer {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+.music-visualizer span {
+  display: block;
+  width: 4px;
+  height: 45px;
+  background: #fe0077;
+  border-radius: 10px;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+.music-visualizer span:nth-child(2) { animation-delay: 0.2s; }
+.music-visualizer span:nth-child(3) { animation-delay: 0.4s; }
+.music-visualizer span:nth-child(4) { animation-delay: 0.6s; }
+.music-visualizer span:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes bounce {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .intro-text {
+    font-size: 2.8rem;
+  }
+  .artist-tagline {
+    font-size: 1.1rem;
+  }
+}
+
+/* Smooth scale-up effect */
+.scale-up {
+  display: inline-block;
+  animation: growText 0.8s ease forwards;
+}
+
+@keyframes growText {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); } /* adjust size */
+}
+
+
+
+/* Her Story Section */
+.her-story {
+  position: relative;
+  padding: 100px 20px;
+  background: rgba(0,0,0,0.6);
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Futuristic overlay glow */
+.story-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: transparent;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+/* Container */
+.story-container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: auto;
+  padding: 40px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.05);
+  -webkit-backdrop-filter: blur(10px); /* Safari/iOS */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 25px rgba(254,0,119,0.2);
+}
+
+/* Title */
+.story-title {
+  font-family: 'Allura', cursive;
+  font-size: 3.5rem;
+  font-weight: 100;
+  color: #fe0077;
+  margin-bottom: 30px;
+}
+
+/* Text */
+.story-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 25px;
+  color: #f1f1f1;
+}
+
+.story-text .highlight {
+  color: #fe0077;
+  font-weight: 400;
+}
+
+/* Futuristic animation - floating */
+.story-container {
+  animation: floaty 6s ease-in-out infinite;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .story-title {
+    font-size: 2.2rem;
+  }
+  .story-text {
+    font-size: 1rem;
+  }
+  .story-container {
+    padding: 25px;
+  }
+}
+
+
+:root{
+  --brand:#fe0077;
+  --ink:#fff;
+  --bg:#000;
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
+}
+
+/* Section base (works over your body background image) */
+.milestone-section{
+  position: relative;
+  padding: 100px 20px;
+  color: var(--ink);
+  overflow: hidden;
+  isolation: isolate; /* ensure overlay blends nicely */
+}
+
+.milestone-bg-overlay{
+  position:absolute; inset:0;
+background:
+  radial-gradient(900px 600px at 85% -20%, rgba(254,0,119,0.18), transparent 70%),
+  radial-gradient(700px 500px at 15% 120%, rgba(254,0,119,0.12), transparent 70%),
+  linear-gradient(160deg, rgba(0,0,0,0.95) 0%, rgba(15,15,15,0.98) 100%);
+
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* Head */
+.section-head{
+  text-align:center;
+  max-width:900px;
+  margin:0 auto 50px;
+  padding:0 10px;
+}
+.milestone-title{
+  font-family:'Allura', cursive;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 100;
+  color: var(--brand);
+  text-shadow: 0 0 14px rgba(254,0,119,0.7);
+  margin-bottom:8px;
+}
+.milestone-sub{
+  font-family:'Montserrat', sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 300;
+  color:#eaeaea;
+}
+.milestone-sub span{ color:var(--ink); font-weight:600; }
+
+/* Timeline layout */
+.timeline{
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  display:grid;
+  grid-template-columns: 1fr minmax(0, 380px) 1fr;
+  gap: 24px;
+}
+
+/* Vertical spine */
+.spine{
+  position:absolute;
+  left:50%;
+  top:0;
+  transform:translateX(-50%);
+  width:2px;
+  height:100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+  overflow:hidden;
+  border-radius:2px;
+}
+.spine-fill{
+  position:absolute; left:0; top:0;
+  width:100%; height:0%;
+  background: linear-gradient(180deg, var(--brand), rgba(254,0,119,0.5));
+  box-shadow: 0 0 18px rgba(254,0,119,0.7);
+}
+
+/* Cards */
+.card{
+  position: relative;
+  display:flex;
+  align-items: center;
+  gap:16px;
+  padding: 18px 18px 18px 22px;
+  margin: 10px 0;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 5px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35), 0 0 24px rgba(254,0,119,0.15) inset;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+/* Alternate sides around the spine (desktop) */
+.card:nth-of-type(odd){
+  grid-column: 1 / 2;
+  justify-self: end;
+  max-width: 520px;
+}
+.card:nth-of-type(even){
+  grid-column: 3 / 4;
+  justify-self: start;
+  max-width: 520px;
+}
+
+/* Connector dot */
+.card::before{
+  content:"";
+  position:absolute;
+  top: 28px;
+  width:14px; height:14px; border-radius:50%;
+  background: var(--brand);
+  box-shadow: 0 0 16px rgba(254,0,119,0.9);
+}
+.card:nth-of-type(odd)::before{ right: -42px; }
+.card:nth-of-type(even)::before{ left: -42px; }
+
+/* Badge (icon) */
+.card-badge{
+  flex: 0 0 46px; height:46px;
+  display:grid; place-items:center;
+  border-radius: 12px;
+  background: rgba(254,0,119,0.12);
+  border: 1px solid rgba(254,0,119,0.35);
+  box-shadow: 0 0 20px rgba(254,0,119,0.25) inset;
+}
+.card-badge svg{
+  width:22px; height:22px; fill: var(--ink);
+  opacity: .95;
+}
+
+/* Content */
+.card-content{ font-family:'Montserrat', sans-serif; }
+.year{
+  font-size: .95rem;
+  letter-spacing:.15em;
+  color:#e9e9e9;
+  opacity:.9;
+  margin-bottom:2px;
+  text-transform: uppercase;
+}
+.card-title{
+  font-family:'Allura', cursive;
+  font-size: 1.5rem;
+  font-weight:100;
+  color: var(--ink);
+  margin-bottom:6px;
+}
+.card-text{
+  font-size: 1rem;
+  line-height:1.7;
+  color:#f5f5f5;
+}
+
+/* Hover / focus */
+.card:hover, .card:focus-within{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45), 0 0 34px rgba(254,0,119,0.22) inset;
+  border-color: rgba(254,0,119,0.55);
+}
+
+/* Soundwave accent on hover */
+.card:hover .card-badge{
+  background: rgba(254,0,119,0.18);
+  box-shadow: 0 0 24px rgba(254,0,119,0.35) inset, 0 0 16px rgba(254,0,119,0.35);
+}
+
+/* Mobile & Tablet: switch to horizontal swipe timeline */
+@media (max-width: 900px){
+  .timeline{
+    display: block;
+  }
+  .spine{ display:none; }
+
+  .timeline{
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  }
+
+  .card{
+    display: inline-flex;
+    vertical-align: top;
+    width: 82%;
+    max-width: 460px;
+    margin: 0 16px 18px;
+    scroll-snap-align: center;
+  }
+  .card::before{ display:none; }
+}
+
+/* Very small screens: keep horizontal swipe but fix overflow */
+@media (max-width: 480px){
+  .card {
+    width: 88%;
+    max-width: 320px;       /* keeps cards reasonable size */
+    white-space: normal;    /* allow text to wrap */
+    word-wrap: break-word;  /* break long words if needed */
+    overflow-wrap: anywhere;/* ensure text fits inside */
+    padding: 16px;          /* give text breathing room */
+    box-sizing: border-box; /* padding doesn't push text out */
+  }
+
+  .card-title { 
+    font-size: 1rem; 
+  }
+  
+  .card-text { 
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+
+/* Optional: custom scrollbar to match brand (if not already global) */
+.timeline::-webkit-scrollbar { height: 8px; }
+.timeline::-webkit-scrollbar-track { background: transparent; }
+.timeline::-webkit-scrollbar-thumb {
+  background: var(--brand);
+  border-radius: 8px;
+}
+
+
+
+/* Achievements Section */
+.achievements {
+  text-align: center;
+  padding: 90px 20px;
+  color: #fff;
+  background: black;
+}
+
+.achievements-title {
+  font-family: 'Allura', cursive;
+  font-size: 3rem;
+  font-weight: 100;
+  color: #fe0077;
+  margin-bottom: 60px;
+}
+
+/* Grid */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Media (Video/Image) */
+.media-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+.media-container video,
+.media-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1);
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.media-container:hover video,
+.media-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay Icon */
+.overlay-icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.6);
+  color: #fe0077;
+  padding: 8px 10px;
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+/* Text below media */
+.card-content {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.card-content h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  color: #fe0077;
+  margin-bottom: 8px;
+  display: flex;
+  font-weight: 400;
+  margin-left: 5px;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #f1f1f1;
+  margin: 0;
+  margin-left: 5px;
+}
+
+/* CTA */
+.achievements-cta {
+  margin-top: 60px;
+}
+
+.cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fe0077;
+  text-decoration: none;
+  font-weight: 100;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+  background: #ff2a8a;
+  transform: scale(1.05);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .achievements-title { font-size: 2.3rem; }
+  .card-content h3 { font-size: 1.2rem; }
+  .card-content p { font-size: .95rem; }
+}
+
+@media (max-width: 780px) {
+  .media-container { aspect-ratio: 4 / 3; }
+  .media-container video{
+    transform: scale(1.1);
+  }
+}
+
+
+
+/* CTA Music Section */
+.cta-music {
+  position: relative;
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.59), rgba(20,0,20,0.75)),
+              url('images/sav2.6jpg') center/cover no-repeat;
+  color: #fff;
+  overflow: hidden;
+}
+
+.cta-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  margin: auto;
+}
+
+.cta-content h2 {
+  font-family: 'Allura', cursive;
+  font-size: 3.2rem;
+  font-weight: 100;
+  color: #fe0077;
+  margin-bottom: 20px;
+}
+
+.cta-content p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  color: #eee;
+  margin-bottom: 40px;
+}
+
+/* CTA Button */
+.cta-music-btn {
+  position: relative;
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid #fe0077;
+  background: transparent;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.cta-music-btn:hover {
+  background: #fe0077;
+  transform: scale(1.08);
+  box-shadow: 0 0 40px rgba(254,0,119,0.9);
+}
+
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .cta-content h2 {
+    font-size: 2.2rem;
+  }
+  .cta-content p {
+    font-size: 1rem;
+  }
+  .cta-music-btn {
+    font-size: 1rem;
+    padding: 14px 30px;
+  }
+}
+
+
+
+/* Footer Styling - Modern, Elegant, Branded */
+.site-footer {
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  background-color: #000;
+  overflow: hidden;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+/* Lines */
+.footer-line {
+  height: 1px;
+  background: #fe0077;
+  width: 100%;
+}
+.top-line {
+  margin-bottom: 40px;
+}
+.bottom-line {
+  margin-top: 40px;
+}
+
+/* Main Footer - Stacked Layout */
+.footer-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+}
+
+/* Logo Background */
+.footer-logo-bg {
+  position: relative;
+  z-index: 0;
+  opacity: 0.5;
+  margin-bottom: 0px;
+  width: 180px;
+  height: 180px;
+}
+.footer-logo-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(2);
+}
+
+/* Social & Music Links */
+.footer-socials {
+  display: flex;
+  margin-top: 0px;
+  gap: 20px;
+  justify-content: center;
+  z-index: 1;
+}
+.footer-socials a {
+  color: #fe0077;
+  font-size: 1.8rem;
+  transition: all 0.3s ease;
+}
+.footer-socials a:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+/* Newsletter Signup */
+.footer-signup {
+  z-index: 1;
+  position: relative;
+}
+.footer-signup p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+  color: #fff;
+}
+.footer-signup form {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.footer-signup input[type="email"] {
+  padding: 10px 15px;
+  border-radius: 0px;
+  border: none;
+  background-color: white;
+  border-bottom: 2px solid white;
+  outline: none;
+  font-size: 1rem;
+  min-width: 200px;
+}
+.footer-signup button {
+  padding: 10px 25px;
+  border: none;
+  background-color: transparent;
+  border: 1px solid #fe0077;
+  color: #fff;
+  font-weight: 100;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.footer-signup button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(254,0,119,0.5);
+}
+
+/* Legal Section */
+.footer-legal {
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 0px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+.footer-legal a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-legal a:hover {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-socials a {
+    font-size: 1.5rem;
+  }
+  .footer-signup input[type="email"] {
+    min-width: 150px;
+  }
+}
