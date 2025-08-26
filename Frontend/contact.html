@@ -36,7 +36,7 @@
 
 <link rel="preload" as="image" href="images/sav27.webp">
 
-  <link rel="stylesheet" href="contact.min.css">
+  <link rel="stylesheet" href="contact.css">
       <link rel="stylesheet" href="popup.min.css">
 
       <!-- Preload Montserrat -->
@@ -148,12 +148,12 @@
     <h2 class="contact-heading">Don’t Be Shy</h2>
     <p class="contact-subheading">Slide into my inbox, I promise I won’t ghost 👻</p>
 
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
+<form id="contact-form" class="contact-form">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
   </div>
 </section>
 
@@ -389,6 +389,36 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
+<script>
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      alert(data.message);
+      form.reset();
+    } catch (error) {
+      alert("Something went wrong. Please try again.");
+      console.error(error);
+    }
+  });
+</script>
+
 
 
     <script type="module" src="firebase.min.js"></script>
