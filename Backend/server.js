@@ -45,13 +45,89 @@ await transporter.sendMail({
 });
 
 
-    // 3. Send autoresponse to user
-    await transporter.sendMail({
-      from: `"Savinnah" <${process.env.EMAIL_USER}>`,
-      to: email,
-      subject: "We got your message! 🎉",
-      text: `Hey ${name},\n\nThanks for reaching out! I’ve received your message and will get back to you soon.\n\n- Savinnah`,
-    });
+await transporter.sendMail({
+  from: `"Savinnah" <${process.env.EMAIL_USER}>`,
+  to: email,
+  subject: "🎶 Your Message is Jamming in Our Inbox!",
+  html: `
+  <div style="font-family: Arial, sans-serif; text-align: center; background-color: #000; color: white; padding: 30px;">
+    <img src="https://www.savinnah.com/S%20(1).png" alt="Savinnah Logo" style="width: 80px; margin-bottom: 20px;" />
+    
+    <h1 style="color: #fe0077; margin-bottom: 10px;">Yo ${name}! 🎤</h1>
+<p style="font-size:16px; line-height:1.6; max-width:620px; margin:auto;">
+Your message just slid in smoother than a jazz sax solo at midnight 🎷.  
+And guess what? I already spotted it — front row, no ticket needed. 🎟️
+</p>
+
+<p style="font-size:16px; line-height:1.6; max-width:620px; margin:20px auto;">
+I’m smiling at this already — almost feels like a melody in my head 🎶.  
+Give me a moment, I want my reply to sound just right... like a note you’ll remember. 💌  
+</p>
+
+
+    <div style="margin-top: 30px;">
+      <a href="https://www.savinnah.com" 
+         style="background-color: transparent; border: 2px solid #fe0077; color: white; text-decoration: none; padding: 12px 25px; border-radius: 0px; font-weight: bold;">
+         🎶 Visit Savinnah
+      </a>
+    </div>
+
+    <p style="margin-top: 30px; font-size: 13px; color: #aaa;">
+      - Savinnah <br/> Making inboxes musical since forever 🎵
+    </p>
+  </div>
+
+  <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Montserrat, Arial, sans-serif; color:#000; max-width:650px;">
+  <!-- Top Separator Line -->
+  <tr>
+    <td colspan="2" style="border-top:2px solid #fe0077; padding:10px 0;"></td>
+  </tr>
+
+  <tr>
+    <!-- Logo Section -->
+    <td width="150" style="padding:10px;">
+      <img src="https://www.savinnah.com/S%20(1).png" alt="Savinnah Logo" style="width:140px; height:auto; display:block;">
+    </td>
+
+    <!-- Info Section -->
+    <td style="padding:10px; vertical-align:middle;">
+      <div style="font-size:22px; font-family: Allura, cursive; color:#fe0077; margin-bottom:4px;">
+        Savinnah
+      </div>
+      <div style="font-size:13px; font-family: Montserrat, Arial, sans-serif; color:#333; margin-bottom:10px; line-height:1.5;">
+        Music Artist | Songwriter
+      </div>
+
+      <!-- Contact -->
+      <div style="font-size:13px; color:#000; margin-bottom:6px;">
+        📧 <a href="mailto:contact@savinnah.com" style="color:#fe0077; text-decoration:none;">contact@savinnah.com</a>
+      </div>
+      <div style="font-size:13px; color:#000; margin-bottom:12px;">
+        🌐 <a href="https://www.savinnah.com" style="color:#fe0077; text-decoration:none;">www.savinnah.com</a>
+      </div>
+
+      <!-- Social Icons -->
+      <div>
+        <a href="https://www.instagram.com/savinnah?utm_source=ig_web_button_share_sheet&igsh=NzRlbjZqdG9zZG5x" style="margin-right:10px;">
+          <img src="https://www.savinnah.com/icons/insta.png" alt="Instagram" style="width:22px; height:22px;">
+        </a>
+        <a href="https://open.spotify.com/artist/3cd1tAs8P9mpjE4e4kBbQb?si=cjjSG-FvR_eKhLmeJpIzvA" style="margin-right:10px;">
+          <img src="https://www.savinnah.com/icons/spotify.png" alt="Spotify" style="width:22px; height:22px;">
+        </a>
+        <a href="https://music.apple.com/us/artist/savinnah/1693213456" style="margin-right:10px;">
+          <img src="https://www.savinnah.com/icons/apple.png" alt="Apple Music" style="width:22px; height:22px;">
+        </a>
+        <a href="https://www.youtube.com/@savinnah">
+          <img src="https://www.savinnah.com/icons/you.png" alt="YouTube" style="width:22px; height:22px;">
+        </a>
+      </div>
+    </td>
+  </tr>
+</table>
+
+  `,
+});
+
 
     console.log(`✅ Email sent successfully to ${email}`);
     res.status(200).json({ message: "Message sent successfully!" });
@@ -59,6 +135,7 @@ await transporter.sendMail({
     console.error("❌ Error sending email:", error);
     res.status(500).json({ message: "Failed to send message", error });
   }
+  
 });
 
 app.listen(PORT, () => {
