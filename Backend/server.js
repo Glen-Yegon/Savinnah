@@ -53,16 +53,22 @@ await transporter.sendMail({
   <div style="font-family: Arial, sans-serif; text-align: center; background-color: #000; color: white; padding: 30px;">
     <img src="https://www.savinnah.com/S%20(1).png" alt="Savinnah Logo" style="width: 80px; margin-bottom: 20px;" />
     
-    <h1 style="color: #fe0077; margin-bottom: 10px;">Yo ${name}! 🎤</h1>
+<h1 style="color: #fe0077; margin-bottom: 10px;">Hi ${name},</h1>
+
 <p style="font-size:16px; line-height:1.6; max-width:620px; margin:auto;">
-Your message just slid in smoother than a jazz sax solo at midnight 🎷.  
-And guess what? I already spotted it — front row, no ticket needed. 🎟️
+Your message has arrived — and I’m genuinely glad to hear from you. 🌟  
 </p>
 
 <p style="font-size:16px; line-height:1.6; max-width:620px; margin:20px auto;">
-I’m smiling at this already — almost feels like a melody in my head 🎶.  
-Give me a moment, I want my reply to sound just right... like a note you’ll remember. 💌  
+I’ll take a moment to go through it carefully so I can reply with the attention it deserves.  
+Think of this as me rolling out a little welcome mat for your ideas. 🏡  
 </p>
+
+<p style="font-size:16px; line-height:1.6; max-width:620px; margin:20px auto; text-align:center;">
+Warmly, <br>  
+<strong>Savinnah</strong>
+</p>
+
 
 
     <div style="margin-top: 30px;">
