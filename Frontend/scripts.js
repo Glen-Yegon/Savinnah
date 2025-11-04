@@ -20,8 +20,13 @@ window.addEventListener("load", () => {
       } else {
         clearInterval(interval);
 
-        // Show navbar immediately
         navbar.style.display = "block";
+navbar.style.opacity = "0";
+navbar.style.transition = "opacity 1s ease";
+setTimeout(() => {
+  navbar.style.opacity = "1";
+}, 50);
+
 
         // Fade out brand first
         brand.style.opacity = "0";
@@ -142,20 +147,15 @@ window.addEventListener("load", () => {
 
 
 
-const hamburger = document.querySelector('.hamburger');
-const menuOverlay = document.getElementById('menu-overlay');
-const closeBtn = document.getElementById('menu-close');
-const underline = document.querySelector('.logo-underline');
+  // Hamburger toggle
+const hamburger = document.getElementById("hamburger");
+const menuOverlay = document.getElementById("menu-overlay");
+const menuClose = document.getElementById("menu-close");
 
-hamburger.addEventListener('click', () => {
-  menuOverlay.classList.add('active');
-
-  // Reset animation
-  underline.style.animation = 'none';
-  underline.offsetHeight; // trigger reflow
-  underline.style.animation = 'underlineExpand 2s ease forwards';
+hamburger.addEventListener("click", () => {
+  menuOverlay.classList.add("active");
 });
 
-closeBtn.addEventListener('click', () => {
-  menuOverlay.classList.remove('active');
+menuClose.addEventListener("click", () => {
+  menuOverlay.classList.remove("active");
 });
