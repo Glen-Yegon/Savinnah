@@ -280,10 +280,10 @@ AOS.init({
   once: false
 });
 
-  </script>
-  <script src="contact.min.js"></script>
+</script>
+<script src="contact.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@0.2.35/bundled/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@0.2.35/bundled/lenis.min.js"></script>
 <script>
   // Initialize Lenis for ultra-smooth scrolling
   const lenis = new Lenis({
@@ -401,22 +401,28 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const response = await fetch("https://savinnah-backend.onrender.com/send", {
+      const response = await fetch("/api/send", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
+
       alert(data.message);
-      form.reset();
+
+      if (response.ok) {
+        form.reset();
+      }
+
     } catch (error) {
-      alert("Something went wrong. Please try again.");
       console.error(error);
+      alert("Something went wrong. Please try again.");
     }
   });
 </script>
-
 
 
 
