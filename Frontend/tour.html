@@ -182,14 +182,126 @@ Event Listings Section End -->
 
 
 
-<!-- Coming Soon Section -->
-<section class="coming-soon">
-  <div class="coming-soon-container">
-    <h1 class="coming-soon-title">Coming Soon</h1>
-    <p class="coming-soon-subtitle">Stay tuned for something amazing</p>
-    <div class="coming-soon-line"></div>
+<!-- =========================
+     FEATURED EVENT SECTION
+========================= -->
+
+<section class="featured-event-section">
+
+  <div class="featured-event-card">
+
+    <!-- LEFT SIDE : POSTER -->
+    <div class="event-poster-side">
+      <!-- Replace with your actual poster path -->
+      <img src="images/poster1.jpeg" alt="Savinnah Event Poster">
+    </div>
+
+    <!-- RIGHT SIDE : EVENT DETAILS -->
+    <div class="event-details-side">
+
+      <span class="live-pill">
+        ● LIVE SESSION
+      </span>
+
+      <h2 class="event-title">
+        An Evening of Soul, Sound & Storytelling
+      </h2>
+
+      <p class="event-description">
+        Step into a warm atmosphere of live vocals,
+        intimate melodies, beautiful energy and unforgettable vibes.
+        A night created for music lovers, deep conversations
+        and dangerously good sound.
+      </p>
+
+      <!-- EVENT INFO -->
+      <div class="event-meta">
+
+        <div class="meta-item">
+          <span class="meta-label">Entry</span>
+          <span class="meta-value">Free Experience</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Time</span>
+          <span class="meta-value">6PM — 9PM</span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Venue</span>
+          <span class="meta-value">
+            Two Grapes – Wine & Friends
+          </span>
+        </div>
+
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">
+            George Padmore Road, Nairobi
+          </span>
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+      <div class="event-buttons">
+        <button class="reserve-btn" id="reserveSpotBtn">
+          Click Me
+        </button>
+      </div>
+
+    </div>
+
   </div>
+
 </section>
+
+<!-- =========================
+     RSVP MODAL
+========================= -->
+
+<div class="event-modal" id="eventModal">
+
+  <div class="event-modal-content">
+
+    <button class="close-modal" id="closeModal">
+      ×
+    </button>
+
+<h2 class="modal-title">
+  Keep The Music Close ✨
+</h2>
+
+<p class="modal-subtitle">
+  Leave your details and be first to hear about
+  upcoming performances, intimate sessions and special moments.
+</p>
+
+    <form id="eventForm">
+
+      <input
+        type="text"
+        id="eventName"
+        placeholder="Your Name"
+        required
+      >
+
+      <input
+        type="email"
+        id="eventEmail"
+        placeholder="Your Email"
+        required
+      >
+
+      <button type="submit" class="submit-event-btn">
+        Join The Experience
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
 
 
   <!-- FOOTER -->
@@ -389,10 +501,151 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 </script>
 
+<script type="module">
 
+/* =========================
+   FIREBASE IMPORTS
+========================= */
 
-  <script src="tour.min.js"></script>
-    <script type="module" src="firebase.min.js"></script>
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBgXK3UxOBGOvkJtbOQcf7Vp96bKZ9Bago",
+  authDomain: "savinnah-a2654.firebaseapp.com",
+  projectId: "savinnah-a2654",
+  storageBucket: "savinnah-a2654.firebasestorage.app",
+  messagingSenderId: "715474109601",
+  appId: "1:715474109601:web:6c89a65c33aa8a612e5ce0",
+  measurementId: "G-0D21S2DN7Q"
+};
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const modal = document.getElementById("eventModal");
+
+const openBtn = document.getElementById("reserveSpotBtn");
+
+const closeBtn = document.getElementById("closeModal");
+
+const form = document.getElementById("eventForm");
+
+/* =========================
+   OPEN MODAL
+========================= */
+
+openBtn.addEventListener("click", () => {
+  modal.classList.add("show");
+});
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("show");
+});
+
+/* Close when clicking outside */
+
+window.addEventListener("click", (e) => {
+  if(e.target === modal){
+    modal.classList.remove("show");
+  }
+});
+
+/* =========================
+   SAVE RSVP
+========================= */
+
+form.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const name = document
+    .getElementById("eventName")
+    .value
+    .trim();
+
+  const email = document
+    .getElementById("eventEmail")
+    .value
+    .trim()
+    .toLowerCase();
+
+  try {
+
+    /* CHECK DUPLICATES */
+
+    const q = query(
+      collection(db, "events"),
+      where("email", "==", email)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if(!snapshot.empty){
+
+      alert("You're already on the guest list ✨");
+
+      return;
+    }
+
+    /* SAVE TO FIREBASE */
+
+    await addDoc(collection(db, "events"), {
+
+      name,
+      email,
+
+      event: "Savinnah Live Session",
+
+      createdAt: new Date()
+
+    });
+
+  alert("💌 Thanks for joining the journey. We'll keep you updated on upcoming performances and special experiences.");
+
+    form.reset();
+
+    modal.classList.remove("show");
+
+  } catch(error){
+
+    console.error(error);
+
+    alert("Something went wrong. Try again.");
+
+  }
+
+});
+
+</script>
+
+<script src="tour.min.js"></script>
+<script type="module" src="firebase.min.js"></script>
 
 </body>
 </html>
