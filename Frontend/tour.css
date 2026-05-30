@@ -1079,6 +1079,35 @@ font-family: 'Montserrat', sans-serif;
   0 0 40px rgba(254,0,119,0.08);
 
   position:relative;
+
+  filter:grayscale(100%);
+  opacity:0.75;
+}
+
+.featured-event-card::after{
+  content:"EVENT ENDED";
+
+  position:absolute;
+  top:30px;
+  right:-55px;
+
+  width:220px;
+  text-align:center;
+
+  background:#6f6f6f;
+  color:white;
+
+  padding:12px 0;
+
+  font-size:0.75rem;
+  font-weight:700;
+  letter-spacing:3px;
+
+  transform:rotate(45deg);
+
+  z-index:10;
+
+  box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
 /* Pink Glow */
@@ -1350,6 +1379,23 @@ font-family: 'Montserrat', sans-serif;
 
 #eventForm input:focus{
   border-color:#fe0077;
+}
+
+.event-ended-btn{
+  background:#555 !important;
+  color:#d8d8d8 !important;
+
+  cursor:not-allowed;
+
+  box-shadow:none !important;
+  transform:none !important;
+
+  pointer-events:none;
+}
+
+.event-ended-btn:hover{
+  transform:none;
+  box-shadow:none;
 }
 
 /* =========================

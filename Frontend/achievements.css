@@ -587,6 +587,40 @@ p {
   }
 }
 
+/* Spotify Card Only */
+.spotify-card{
+  min-height: 380px;
+  max-height: 580px;
+}
+
+.spotify-card .achievement-media{
+  max-height: 500px;
+}
+
+.spotify-card .achievement-media img{
+  max-height: 700px;
+  width: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+
+  .spotify-card{
+    min-height: auto;
+    max-height: none;
+  }
+
+  .spotify-card .achievement-media{
+    max-height: none;
+  }
+
+  .spotify-card .achievement-media img{
+    max-height: none;
+    height: auto;
+  }
+
+}
+
 
 
 
