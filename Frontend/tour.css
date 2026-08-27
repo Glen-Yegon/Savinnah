@@ -1059,7 +1059,7 @@ font-family: 'Montserrat', sans-serif;
   width:100%;
   max-width:1400px;
   margin:auto;
-
+margin-top: 30px;
   display:flex;
   align-items:stretch;
   gap:40px;
@@ -1441,4 +1441,65 @@ font-family: 'Montserrat', sans-serif;
     width:100%;
   }
 
+  .archived-event-card {
+  margin-top: 35px;
+}
+
+}
+
+/* =========================
+   ARCHIVED EVENT
+========================= */
+
+.archived-event-card {
+  margin-top: 55px;
+  opacity: 0.58;
+  filter: grayscale(100%);
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: none;
+}
+
+.archived-event-card::before {
+  opacity: 0.04;
+}
+
+.archived-event-card::after {
+  content: "ARCHIVED";
+  background: #3f3f3f;
+  color: #bdbdbd;
+}
+
+.archived-event-card .live-pill {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.12);
+  color: #aaa;
+}
+
+.archived-event-card .event-title {
+  color: #d0d0d0;
+}
+
+.archived-event-card .event-description {
+  color: #999;
+}
+
+.archived-event-card .event-description span {
+  color: #bbb;
+}
+
+.archived-event-card .meta-item {
+  background: rgba(255,255,255,0.02);
+  border-color: rgba(255,255,255,0.05);
+}
+
+.archived-event-card .meta-label {
+  color: #999;
+}
+
+.archived-event-card .meta-value {
+  color: #aaa;
+}
+
+.archived-event-card .event-poster-side img {
+  opacity: 0.65;
 }
